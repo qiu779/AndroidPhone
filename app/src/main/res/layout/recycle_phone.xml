@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/phone_people"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/people" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+
+        android:layout_toRightOf="@id/phone_people">
+
+        <TextView
+            android:id="@+id/phone_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系人"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/phone_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/phone_name"
+            android:text="|  类别"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_name"
+            android:text="10086"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/phone_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_name"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/phone_number"
+            android:text="杭州"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/phone_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number"
+            android:text="下午1:46"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/phone_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/phone_time"
+            android:text="已接通"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/phone_more"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/phone_help"/>
+
+</RelativeLayout>

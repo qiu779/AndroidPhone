@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/phone_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchview_radius"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/phone_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/phone_search"/>
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/text22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/phone_tableTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/phone_table"
+        android:background="@drawable/radius"
+        android:visibility="gone"
+        >
+        <EditText
+            android:id="@+id/phone_callNumber"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="40dp"
+            android:textColor="@color/green"
+            android:gravity="center"
+            android:background="@null"/>
+        <ImageButton
+            android:id="@+id/phone_delete"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/phone_delete"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_table"
+        android:layout_width="match_parent"
+        android:layout_height="385dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@drawable/radius">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+        <ImageButton
+            android:id="@+id/phone_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:background="@drawable/phone_1"
+            />
+        <ImageButton
+            android:id="@+id/phone_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:background="@drawable/phone_2"/>
+        <ImageButton
+            android:id="@+id/phone_three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/phone_3"
+            android:scaleType="centerCrop" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/phone_four"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_4"/>
+        <ImageButton
+            android:id="@+id/phone_five"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_5"/>
+
+            <ImageButton
+                android:id="@+id/phone_six"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@drawable/phone_6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/phone_seven"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_7"/>
+        <ImageButton
+            android:id="@+id/phone_eight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_8"/>
+        <ImageButton
+            android:id="@+id/phone_nine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_9"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/phone_asterisk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_weight="1"
+                android:background="@drawable/phone_asterisk"/>
+        <ImageButton
+            android:id="@+id/phone_zero"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_0"/>
+        <ImageButton
+            android:id="@+id/phone_hash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="@drawable/phone_hash"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+            <ImageButton
+                android:id="@+id/phone_help"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_weight="1"
+                android:background="@drawable/phone_help"/>
+            <ImageButton
+                android:id="@+id/phone_call1"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:layout_weight="2"
+                android:background="@drawable/phone_call1"
+                android:layout_marginTop="10dp"/>
+            <ImageButton
+                android:id="@+id/phone_call2"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:layout_weight="2"
+                android:background="@drawable/phone_call2"
+                android:layout_marginTop="10dp"/>
+            <ImageButton
+                android:id="@+id/phone_vanish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_weight="1"
+                android:background="@drawable/phone_show"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/phone_show"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

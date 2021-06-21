@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/contact_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:layout_marginHorizontal="25dp"
+        android:background="@drawable/searchview_radius"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/item_index" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contact_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.myphone.sideBar.SideBar
+            android:id="@+id/contact_sideBar"
+            android:layout_width="60px"
+            android:layout_height="580dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/sidebar_radius"/>
+
+        <Button
+            android:id="@+id/contact_add"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="35dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="＋"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_radius"/>
+    </RelativeLayout>
+
+</LinearLayout>
