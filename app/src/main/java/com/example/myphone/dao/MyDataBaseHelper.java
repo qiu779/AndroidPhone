@@ -14,7 +14,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     private Context context;
     //说明数据库的名称和版本
     private static final String DATABASE_NAME = "Contacts.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 14;
 
     //表名
     private static final String TABLE_NAME1 = "Calls";
@@ -28,34 +28,62 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
             + "type int not null,"
             + "category varchar(20) not null,"
             + "callDuration varchar(20) not null,"
-            + "area varchar(20) not null)";
+            + "area varchar(20) not null,"
+            + "contact_id integer,"
+            + "foreign key(contact_id) references " + TABLE_NAME2 +"(id) on delete set null on update cascade)";
 
     private static final String CREATE_Contacts = "create table " + TABLE_NAME2 + "("
             + "id integer primary key autoincrement,"
             + "name varchar(20) not null,"
-            + "number1 varchar(20) not null,"
+            + "number varchar(20) not null,"
             + "number2 varchar(20) not null,"
             + "netName varchar(20) not null,"
             + "area varchar(20) not null,"
+            + "netName2 varchar(20) not null,"
+            + "area2 varchar(20) not null,"
             + "birthDay varchar(20) not null,"
-            + "email varchar(20) not null,"
+            + "email email not null,"
             + "address varchar(30) not null,"
             + "groupName varchar(20) not null,"
             + "blacklist boolean not null)";
 
+//    private static final String TRIGGER_UPDATENAME = "create trigger update_name "
+//            + "after update of name on " + TABLE_NAME2
+//            + " BEGIN "
+//            + "update " + TABLE_NAME1
+//            + " set name = new.name where id = old.id"
+//            + "END;";
+//    private static final String TRIGGER_UPDATENUMBER = "create trigger update_number "
+//            + "after update of number,number2 on " + TABLE_NAME2
+//            + " BEGIN "
+//            + "update " + TABLE_NAME1
+//            + " set contact_id = null,name = '' where number = old.number;"
+//            + "update"
+//            + "END;";
+
 
     public MyDataBaseHelper(@Nullable Context context, @Nullable SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
-        Log.d(TAG,"Create database");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(CREATE_Calls);
-        Log.d(TAG,"Create Calls");
         db.execSQL(CREATE_Contacts);
-        Log.d(TAG,"Create Contacts");
+        db.execSQL(CREATE_Calls);
+//        db.execSQL(TRIGGER_UPDATENAME);
+//        Log.d(TAG,"Create TRIGGER");
+    }
+
+    /*
+    打开外键约束，默认为关闭
+     */
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()){
+            db.execSQL("PRAGMA foreign_keys = ON;");
+        }
     }
 
     @Override

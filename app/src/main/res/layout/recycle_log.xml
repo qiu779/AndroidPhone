@@ -11,14 +11,14 @@
         android:layout_centerVertical="true">
 
         <TextView
-            android:id="@+id/detail_calltime"
+            android:id="@+id/logs_calltime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2010年10月9日 晚上8::06"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/detail_callnumber"
+            android:id="@+id/logs_callnumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="18396329095"
@@ -33,12 +33,14 @@
         android:layout_centerVertical="true">
 
         <TextView
+            android:id="@+id/logs_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="呼入4分3秒"
             android:textSize="12dp"
             android:layout_marginRight="5dp"/>
         <TextView
+            android:id="@+id/logs_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="卡1"

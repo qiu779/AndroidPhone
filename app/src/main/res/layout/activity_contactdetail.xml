@@ -1,144 +1,617 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:isScrollContainer="true"
+    android:background="@color/white">
 
+    <RelativeLayout
+        android:id="@+id/detail_head_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/detail_back"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_prev"
+            android:background="#00FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/detail_new"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_caidan_dian"
+            android:background="#00FFFFFF" />
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@id/detail_head_view"
+        android:layout_above="@id/button_view"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/detail_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:gravity="center"
-                android:padding="0dp"
-                android:text="没有"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <Button
-                android:id="@+id/detail_new"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="#00FFFFFF"
-                android:gravity="center"
-                android:padding="0dp"
-                android:text="新建"
-                android:textSize="16dp"
-                android:textColor="@color/black"/>
-        </RelativeLayout>
-
         <LinearLayout
+            android:id="@+id/detail_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="60dp"
+                android:paddingLeft="30dp"
+                android:paddingBottom="40dp">
+
+                <ImageView
+                    android:id="@+id/detail_picture"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/people"/>
+
+                <TextView
+                    android:id="@+id/detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="名字"
+                    android:textSize="28dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="快递"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--    分界线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="#22000000"/>
+
+        <LinearLayout
+            android:id="@+id/detail_phone_view1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingLeft="30dp"
-            android:paddingBottom="20dp">
-
-            <ImageView
-                android:id="@+id/detail_picture"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/people"/>
+            android:visibility="gone">
 
             <TextView
-                android:id="@+id/detail_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/detail_number1"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="名字"
-                android:textSize="18dp"/>
+                android:layout_marginRight="20dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:text="18396329095"
+                android:textStyle="bold"
+                android:paddingVertical="28dp"/>
+
+            <ImageButton
+                android:id="@+id/detail_call1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_dianhua"
+                android:background="@color/white"
+                android:padding="0dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/detail_send1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_duanxin"
+                android:background="@color/white"
+                android:padding="0dp"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_phone_view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:visibility="gone">
 
             <TextView
+                android:id="@+id/detail_number2"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:text="18396329095"
+                android:textStyle="bold"
+                android:paddingVertical="28dp"/>
+
+            <ImageButton
+                android:id="@+id/detail_call2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_dianhua"
+                android:background="@color/white"
+                android:padding="0dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/detail_send2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_duanxin"
+                android:background="@color/white"
+                android:padding="0dp"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_email_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingVertical="23dp"
+            android:visibility="gone">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="快递"
-                android:textSize="12dp"/>
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1481604982@qq.com"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="邮箱"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_birthday_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingVertical="23dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2010/10/9"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生日"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_address_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingVertical="23dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="浙江工业大学"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地址"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_more_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingVertical="23dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乱其实 的是非得失发送到法"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="备注"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--    分界线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="#22000000"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:layout_marginVertical="20dp"
+            android:text="通话记录"
+            android:textSize="10dp"/>
+
+        <RelativeLayout
+            android:id="@+id/detail_log_view1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingHorizontal="30dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2010年10月9日 晚上8::06"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/detail_callnumber1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18396329095"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltype1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="呼入4分3秒"
+                    android:textSize="12dp"
+                    android:layout_marginRight="5dp"/>
+                <TextView
+                    android:id="@+id/detail_callcard1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卡1"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/detail_log_view2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingHorizontal="30dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2010年10月9日 晚上8::06"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/detail_callnumber2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18396329095"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltype2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="呼入4分3秒"
+                    android:textSize="12dp"
+                    android:layout_marginRight="5dp"/>
+                <TextView
+                    android:id="@+id/detail_callcard2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卡1"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/detail_log_view3"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingHorizontal="30dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltime3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2010年10月9日 晚上8::06"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/detail_callnumber3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18396329095"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/detail_calltype3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="呼入4分3秒"
+                    android:textSize="12dp"
+                    android:layout_marginRight="5dp"/>
+                <TextView
+                    android:id="@+id/detail_callcard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卡1"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/detail_morelog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="更多通话记录"
+            android:textSize="16dp"
+            android:textColor="@color/blue"
+            android:background="@null"
+            android:visibility="gone"/>
+
+        <!--    分界线-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="#22000000"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="更多"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/detail_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="33dp"
+            android:paddingLeft="30dp"
+            android:text="群组名称"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/detail_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="二维码名片"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@null"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+    <LinearLayout
+        android:id="@+id/button_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/detail_collect"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:src="@drawable/ic_shoucang"
+                android:background="@color/white"/>
+            <TextView
+                android:id="@+id/collect_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textSize="8dp"
+                android:gravity="center"
+                android:text="收藏"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/detail_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:src="@drawable/ic_bianji"
+                android:background="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textSize="8dp"
+                android:text="编辑联系人"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/detail_blacklist"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:src="@drawable/ic_heimingdan"
+                android:background="@color/white"/>
+            <TextView
+                android:id="@+id/blacklist_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textSize="8dp"
+                android:text="加入黑名单"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/detail_del"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:src="@drawable/ic_shanchulianxiren"
+                android:background="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textSize="8dp"
+                android:text="删除联系人"
+                android:gravity="center"/>
         </LinearLayout>
 
     </LinearLayout>
-
-<!--    分界线-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="#22000000"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp">
-
-        <TextView
-            android:id="@+id/detail_number"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="18396329095"
-            android:paddingVertical="20dp"/>
-
-        <ImageButton
-            android:id="@+id/detail_call"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/people"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:background="@drawable/detailimagebut_rdius"/>
-
-        <ImageButton
-            android:id="@+id/detail_send"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/people"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:background="@drawable/button_radius"/>
-    </LinearLayout>
-
-    <!--    分界线-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="#22000000"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="通话记录"
-        android:textSize="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/detailcalls_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:paddingTop="20dp"/>
-
-    <!--    分界线-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="#22000000"/>
-
-</LinearLayout>
+</RelativeLayout>

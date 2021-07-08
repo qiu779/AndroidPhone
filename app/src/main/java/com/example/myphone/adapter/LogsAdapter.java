@@ -23,19 +23,17 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
-public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHolder> {
+public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.LogsViewHolder> {
 
     private Context context;
     private List<Calls> data;
-    int i = 0;
-    int j = 0;
 
     //监听器
     OnItemClickListener onItemClickListener;
     OnItemLongClickListener onItemLongClickListener;
     OnButMoreClickListener onButMoreClickListener;
 
-    public PhoneAdapter(Context context, List<Calls> data){
+    public LogsAdapter(Context context, List<Calls> data){
         this.context = context;
         this.data = data;
     }
@@ -53,8 +51,8 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
     }
 
     /*
-    * 对监听器接口的定义，单击和长按
-    * */
+     * 对监听器接口的定义，单击和长按
+     * */
     public interface OnItemClickListener{
         public void OnItemClick(View view, int position);
     }
@@ -71,44 +69,31 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
 
     @NonNull
     @Override
-    public PhoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycle_phone, parent, false);
-        j++;
-        System.out.println(j);
-        return new PhoneViewHolder(view);
+    public LogsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycle_log, parent, false);
+        return new LogsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhoneAdapter.PhoneViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LogsAdapter.LogsViewHolder holder, int position) {
         Instant now = Instant.now();
         Calls calls = data.get(position);
         //显示通话日期格式的设置
         Date callDate = new Date(calls.getDate());
-        String callDateStr = Util.getDateStr(callDate);
+        String callDateStr = Util.getAllDateStr(callDate);
         //
         //显示通话状态及通话时间的格式设置
         int type = calls.getType();
-        int duration = 0;
-        String temp2= calls.getCallDuration();
-        if (temp2 == null){
-            temp2 = "0";
+        String callDuration = calls.getCallDuration();
+        if (callDuration == null || "".equals(callDuration)){
+            callDuration = "0";
         }
-        String temp3= "0";
-        if (temp2.length()>10){
-           temp3 =temp2.substring(0,10);
-            duration = Integer.parseInt(temp3);
-        }else{
-            duration =Integer.parseInt(temp2);
-        }
+        int duration = Integer.parseInt(callDuration);
         String typeStr = Util.getTypeStr(type, duration);
         //
-        holder.phonename.setText(calls.getName());
-        holder.phonenumber.setText(calls.getPhoneNumber());
-        holder.phonestate.setText(typeStr);
-        holder.phonetime.setText(callDateStr);
-        holder.phonecategory.setText(calls.getNetName());
-        holder.phonearea.setText(calls.getArea());
-        holder.phonecarrier.setText(calls.getNetName());
+        holder.logNumber.setText(calls.getPhoneNumber());
+        holder.logType.setText(typeStr);
+        holder.logTime.setText(callDateStr);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,16 +107,12 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
                 return true;
             }
         });
-        holder.phonemore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButMoreClickListener.OnButMoreClick(view, position);
-            }
-        });
-        Instant now2 = Instant.now();
-        Log.d("时间55",String.valueOf(Duration.between(now, now2).toMillis()));
-        i++;
-        System.out.println(i);
+//        holder.phonemore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onButMoreClickListener.OnButMoreClick(view, position);
+//            }
+//        });
     }
 
     @Override
@@ -139,22 +120,17 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
         return data.size();
     }
 
-    public class PhoneViewHolder extends RecyclerView.ViewHolder{
-        ImageView phonepeople;
-        TextView phonename, phonenumber, phonecategory, phonetime, phonestate, phonearea, phonecarrier;
-        ImageButton phonemore;
+    public class LogsViewHolder extends RecyclerView.ViewHolder{
 
-        public PhoneViewHolder(@NonNull View itemView) {
+        TextView logNumber, logTime, logType, logCard;
+
+        public LogsViewHolder(@NonNull View itemView) {
             super(itemView);
-            phonename = itemView.findViewById(R.id.phone_name);
-            phonepeople = itemView.findViewById(R.id.phone_people);
-            phonenumber = itemView.findViewById(R.id.phone_number);
-            phonecategory = itemView.findViewById(R.id.phone_category);
-            phonetime = itemView.findViewById(R.id.phone_time);
-            phonestate = itemView.findViewById(R.id.phone_state);
-            phonearea = itemView.findViewById(R.id.phone_area);
-            phonemore = itemView.findViewById(R.id.phone_more);
-            phonecarrier = itemView.findViewById(R.id.phone_carrier);
+            logNumber = itemView.findViewById(R.id.logs_calltime);
+            logTime = itemView.findViewById(R.id.logs_calltime);
+            logType = itemView.findViewById(R.id.logs_type);
+            logCard = itemView.findViewById(R.id.logs_card);
         }
     }
 }
+

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myphone">
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -19,6 +23,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.AddActivity" />
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.AllLogsActivity"/>
+
+
+        <service android:name=".service.PhoneService"/>
+
+<!--        <receiver android:name=".broadcast.PhoneReceiver"-->
+<!--            android:enabled="true"-->
+<!--            >-->
+<!--            <intent-filter>-->
+<!--&lt;!&ndash;                <action android:name="android.intent.action.BOOT_COMPLETED"/>&ndash;&gt;-->
+<!--                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>-->
+<!--                <action android:name="android.intent.action.PHONE_STATE"/>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+        <receiver android:name=".broadcast.PhoneReceiver">
+            <intent-filter>
+                   <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                   <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

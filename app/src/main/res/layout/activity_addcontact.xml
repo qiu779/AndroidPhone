@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentBottom="false"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/add_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,17 +14,18 @@
             android:layout_height="50dp"
             android:text="×"
             android:padding="0dp"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="25dp"
             android:gravity="center"
             android:background="@null"
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:id="@+id/view_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="新建联系人"
-            android:textSize="19dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
@@ -36,7 +36,7 @@
             android:layout_height="50dp"
             android:text="√"
             android:padding="0dp"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="25dp"
             android:gravity="center"
             android:background="@null"
@@ -47,96 +47,113 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/add_header"
+        android:layout_marginTop="28dp">
 
         <ImageView
             android:id="@+id/add_picture"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:src="@drawable/people" />
 
         <Button
             android:id="@+id/add_qrcode"
-            android:layout_width="55dp"
-            android:layout_height="30dp"
+            android:layout_width="70dp"
+            android:layout_height="27dp"
             android:text="扫描名片"
             android:textSize="10dp"
             android:textColor="@color/blue"
             android:layout_gravity="center"
-            android:padding="0dp"/>
+            android:layout_marginTop="10dp"
+            android:padding="0dp"
+            android:background="@drawable/searchview_radius"/>
 
-        <EditText
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="姓名"
-            android:layout_marginTop="30dp"
+            android:hint="姓名"
+            android:layout_marginTop="35dp"
             android:layout_marginHorizontal="10dp"
             android:singleLine="true"
             android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp" />
+            android:paddingHorizontal="20dp"
+            />
 
-        <EditText
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_number1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="电话"
+            android:hint="电话"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:singleLine="true"
             android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp"/>
+            android:paddingHorizontal="20dp"
+            android:inputType="number"
+            />
 
-        <EditText
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_number2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="电话"
+            android:layout_height="55dp"
+            android:hint="电话"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:singleLine="true"
             android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp"/>
+            android:paddingHorizontal="20dp"
+            android:inputType="phone"
+            />
 
-        <EditText
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="邮件"
+            android:layout_height="55dp"
+            android:hint="邮件"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:singleLine="true"
             android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp"/>
-        <DatePicker
+            android:paddingHorizontal="20dp"
+            android:inputType="textEmailAddress"
+            />
+
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_birthday"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="生日"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp"/>
-        <EditText
-            android:id="@+id/add_address"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="地址"
+            android:layout_height="55dp"
+            android:hint="生日"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:singleLine="true"
             android:background="@drawable/editview_radius"
-            android:paddingHorizontal="20dp"/>
+            android:paddingHorizontal="20dp"
+            android:inputType=""
+            />
+
+        <com.example.myphone.myView.EditTextWithDel
+            android:id="@+id/add_address"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="地址"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:singleLine="true"
+            android:background="@drawable/editview_radius"
+            android:paddingHorizontal="20dp"
+            />
 
         <LinearLayout
             android:id="@+id/add_groupchoose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginVertical="20dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/add_groupname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -151,17 +168,17 @@
                 android:layout_weight="1"
                 android:text=">"
                 android:textSize="15dp"
-                android:paddingLeft="50dp"
+                android:paddingLeft="55dp"
                 android:paddingVertical="10dp" />
         </LinearLayout>
 
 
-        <EditText
+        <com.example.myphone.myView.EditTextWithDel
             android:id="@+id/add_more"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:text="备注"
+            android:minHeight="55dp"
+            android:hint="备注"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/editview_radius"
@@ -169,4 +186,51 @@
 
     </LinearLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/add_birthday_pivkview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:background="@drawable/top_left_right_radius"
+        android:visibility="gone">
+
+        <DatePicker
+            android:id="@+id/add_birthday_pick"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_birthday_pick"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <Button
+                android:id="@+id/add_birthday_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消"
+                android:background="@drawable/searchview_radius"
+                android:layout_marginRight="10dp"
+                android:layout_marginVertical="30dp"/>
+
+            <Button
+                android:id="@+id/add_birthday_commit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="确定"
+                android:background="@drawable/searchview_radius"
+                android:layout_marginLeft="10dp"
+                android:layout_marginVertical="30dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

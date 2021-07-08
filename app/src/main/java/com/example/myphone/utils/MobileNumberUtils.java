@@ -8,15 +8,18 @@ import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 
 import java.util.Locale;
 
-class MobileNumberUtils {
+public class MobileNumberUtils {
     private static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private static PhoneNumberToCarrierMapper carrierMapper = PhoneNumberToCarrierMapper.getInstance();
     private static PhoneNumberOfflineGeocoder geocoder = PhoneNumberOfflineGeocoder.getInstance();
     private static final String LANGUAGE = "CN";
 
     //获取号码运营商
-    public static String getCarrier(String phoneNumber, int countryCode){
+    public static String getNetName(String phoneNumber, int countryCode){ //countryCode 在这里没用到，直接设置成中国
         Phonenumber.PhoneNumber number = new Phonenumber.PhoneNumber();
+        if (phoneNumber == null || "".equals(phoneNumber)){
+            return "";
+        }
         try {
             number = phoneNumberUtil.parse(phoneNumber, LANGUAGE);
         } catch (NumberParseException e) {
@@ -36,7 +39,7 @@ class MobileNumberUtils {
                 carrierZh = "电信";
                 break;
             default:
-                carrierZh = "未知";
+                carrierZh = "";
         }
 
         return carrierZh;
@@ -44,6 +47,9 @@ class MobileNumberUtils {
 
     //获取归属地
     public static String getArea(String phoneNumber){
+        if (phoneNumber == null || "".equals(phoneNumber)){
+            return "";
+        }
         Phonenumber.PhoneNumber number =null;
         try {
             number = phoneNumberUtil.parse(phoneNumber, LANGUAGE);

@@ -1,29 +1,56 @@
-package com.example.myphone.utils;
+package com.example.myphone.mode;
 
 import java.io.Serializable;
-import java.util.Date;
 
-public class Calls implements Serializable {
+public class Calls implements Serializable,Comparable<Calls> {
+    int id;
     String name;            //用户名（陌生人电话则无值）
     String phoneNumber;     //手机号
     Long date;              //通话日期
     int type;               //通话类型
     String area;            //归属地
-    String category;        //电话类型（电话不为联系人时）
+    String netName;        //电话类型（电话不为联系人时）  暂时先作为运营商
     String callDuration;    //通话时长
+    int contact_id;
 
     public Calls(){
-
+        id = 0;
+        name = "";
+        phoneNumber = "";
+        date = Long.valueOf(0);
+        type = 0;
+        area = "";
+        netName = "";
+        callDuration = "";
+        contact_id = 0;
     }
 
-    public Calls(String name, String phoneNumber, Long date, int type, String area, String category, String callDuration) {
+    public Calls(int id, String name, String phoneNumber, Long date, int type, String area, String netName, String callDuration, int contact_id) {
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.type = type;
         this.area = area;
-        this.category = category;
+        this.netName = netName;
         this.callDuration = callDuration;
+        this.contact_id = contact_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getContact_id() {
+        return contact_id;
+    }
+
+    public void setContact_id(int contact_id) {
+        this.contact_id = contact_id;
     }
 
     public String getName() {
@@ -66,12 +93,12 @@ public class Calls implements Serializable {
         this.area = area;
     }
 
-    public String getCategory() {
-        return category;
+    public String getNetName() {
+        return netName;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setNetName(String netName) {
+        this.netName = netName;
     }
 
     public String getCallDuration() {
@@ -80,5 +107,18 @@ public class Calls implements Serializable {
 
     public void setCallDuration(String callDuration) {
         this.callDuration = callDuration;
+    }
+
+
+    @Override
+    public int compareTo(Calls calls) {
+        int temp = calls.date.compareTo(this.date);
+//        if (temp > 0)
+//            return -1;
+//        else if (temp == 0)
+//            return 0;
+//        else
+//            return 1;
+        return temp;
     }
 }

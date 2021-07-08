@@ -1,4 +1,4 @@
-package com.example.myphone.pinyin;
+package com.example.myphone.utils;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -11,6 +11,9 @@ public class Cn2Spell {
     public static StringBuffer sb = new StringBuffer();
 
     public static String getPinYinHeadChar(String chines){
+        if (chines == null || "".equals(chines)){
+            return "";
+        }
         sb.setLength(0);        //清空
         char[] chars = chines.toCharArray();
         HanyuPinyinOutputFormat hanyuPinyinOutputFormat = new HanyuPinyinOutputFormat();
@@ -31,6 +34,9 @@ public class Cn2Spell {
     }
 
     public static String getPinYinFirstLetter(String str){
+        if (str == null || "".equals(str)){
+            return "";
+        }
         sb.setLength(0);
         char c = str.charAt(0);
         String[] pinYinArray = PinyinHelper.toHanyuPinyinStringArray(c);
@@ -43,6 +49,9 @@ public class Cn2Spell {
     }
 
     public static String getPinYin(String chines){
+        if (chines == null || "".equals(chines)){
+            return "";
+        }
         sb.setLength(0);
         char[] nameChar = chines.toCharArray();
         HanyuPinyinOutputFormat hanyuPinyinOutputFormat = new HanyuPinyinOutputFormat();

@@ -13,5 +13,6 @@
     <color name="blue">#34AADF</color>
     <color name="lucid">#00FFFFFF</color>
     <color name="sideBar_color">#56EAEAEA</color>
+    <color name="indexShow_color">#A8EAEAEA</color>
     <color name="test">#00ff8c</color>
 </resources>

@@ -5,11 +5,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CallLog;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,8 +29,9 @@ import com.example.myphone.dao.DBController;
 import com.example.myphone.dao.MyDataBaseHelper;
 import com.example.myphone.R;
 import com.example.myphone.adapter.PhoneAdapter;
-import com.example.myphone.pinyin.Cn2Spell;
-import com.example.myphone.utils.Calls;
+import com.example.myphone.myView.EditTextWithDel;
+import com.example.myphone.mode.Calls;
+import com.example.myphone.utils.Util;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -48,7 +46,7 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
 
     private ImageButton phoneOne, phoneTwo, phoneThree, phoneFour, phoneFive, phoneSix, phoneSeven, phoneEight, phoneNine, phoneZero, phoneHash, phoneAsterisk, phoneCall1, phoneCall2, phoneHelp, phoneShow, phoneDelete, phonevanish;
     private EditText phoneCallNum;
-    private SearchView phoneSearch;
+    private EditTextWithDel phoneSearch;
     private LinearLayout phoneTable, phoneTableTop;
 
     private View root;
@@ -80,10 +78,17 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
         Date date = new Date();
         date.getTime();
         dbController = new DBController(context);
-        //获取本机原有的通话记录
-//        dbController.getLocalHistoryList();
         Instant now = Instant.now();
         datas = dbController.getPhoneRvItem();
+        if (datas.size() == 0){
+            //获取本机原有的通话记录
+            dbController.getLocalContacts();
+
+            dbController.getLocalHistoryList();
+            dbController.setContact_id();
+            datas = dbController.getPhoneRvItem();
+        }
+        dbController.setContact_id();
         initRecycleView();
         Instant now2 = Instant.now();
         Log.d("时间11",String.valueOf(Duration.between(now, now2).toMillis()));
@@ -91,12 +96,24 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
         initView();
         Instant now4 = Instant.now();
         Log.d("时间11",String.valueOf(Duration.between(now3, now4).toMillis()));
-        Log.d("拼音getPinYinHeadChar",Cn2Spell.getPinYinHeadChar("!重庆"));
-        Log.d("拼音getPinYinFirstLetter",Cn2Spell.getPinYinFirstLetter("重庆"));
-        Log.d("拼音getPinYin",Cn2Spell.getPinYin("重庆"));
 
         return root;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        int temp = dbController.getPhoneRvItemCount();
+//        Log.d(TAG, "getCount =" + temp);
+//        Log.d(TAG, "data.size =" + datas.size());
+//        if (datas.size() != temp){
+//            datas.clear();
+//            datas.addAll(dbController.getPhoneRvItem());
+//            phoneAdapter.notifyDataSetChanged();
+//        }
+        Log.d(TAG, "onStart");
+    }
+
 
     private void initView() {
         phoneSearch = root.findViewById(R.id.phone_search);
@@ -160,14 +177,12 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "222");
-
-        Log.d(TAG, "333");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestory");
     }
 
     /*
@@ -243,7 +258,10 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
                 break;
             case R.id.phone_call1:
                 String number = String.valueOf(phoneCallNum.getText());
-                callPhone(number);
+//                Calls calls = new Calls();
+//                calls.setContact_id(15);
+//                dbController.InsertCall(calls);
+                Util.callPhone(context, number);
                 break;
             case R.id.phone_call2:
 
@@ -290,33 +308,52 @@ public class PhoneTabFragment extends Fragment implements View.OnClickListener,V
             @Override
             public void OnItemClick(View view, int position) {
                 Calls calls = datas.get(position);
-                callPhone(calls.getPhoneNumber());
+                Util.callPhone(context, calls.getPhoneNumber());
             }
         });
         phoneAdapter.setOnItemLongClickListener(new PhoneAdapter.OnItemLongClickListener() {
             @Override
             public void OnItemLongClick(View view, int position) {
-                Toast.makeText(context, "触发的是长按", Toast.LENGTH_SHORT);
+                List<Integer> list =new ArrayList<>();
+                list.add(datas.get(position).getId());
+                dbController.Delete_Calls(list);
+                phoneAdapter.notifyItemRemoved(position);
             }
         });
         phoneAdapter.setOnButMoreClickListener(new PhoneAdapter.OnButMoreClickListener() {
             @Override
             public void OnButMoreClick(View view, int position) {
-                Toast.makeText(context, "按的是more", Toast.LENGTH_SHORT);
+                Toast.makeText(getActivity(), "按的是more", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,DetailsActivity.class);
+                intent.putExtra("contact_id", datas.get(position).getContact_id());
+
+                intent.putExtra("number", datas.get(position).getPhoneNumber());
+                startActivity(intent);
+
             }
         });
     }
 
-    private void callPhone(String number) {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) context,
-                    new String[]{Manifest.permission.CALL_PHONE}, 1000);
-        }
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        Uri data = Uri.parse("tel:" + number);
-        intent.setData(data);
-        startActivity(intent);
+
+    @Override
+    public void onStop() {
+        super.onStop();
+//        dbController.DeleteCall();
+        Log.d(TAG, "onStop");
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
 
 
 }
